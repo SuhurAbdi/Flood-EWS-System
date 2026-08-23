@@ -1,0 +1,172 @@
+const API_URL = "http://127.0.0.1:8000/api";
+
+/*
+|--------------------------------------------------------------------------
+| Register
+|--------------------------------------------------------------------------
+*/
+
+export async function registerUser(userData) {
+  const response = await fetch(`${API_URL}/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(userData),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Registration failed.");
+  }
+
+  return data;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Login
+|--------------------------------------------------------------------------
+*/
+
+export async function loginUser(credentials) {
+  const response = await fetch(`${API_URL}/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(credentials),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Login failed.");
+  }
+
+  return data;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Get authenticated user
+|--------------------------------------------------------------------------
+*/
+
+export async function getAuthenticatedUser(token) {
+  const response = await fetch(`${API_URL}/user`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Unable to get user.");
+  }
+
+  return data;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Logout
+|--------------------------------------------------------------------------
+*/
+
+export async function logoutUser(token) {
+  const response = await fetch(`${API_URL}/logout`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Logout failed.");
+  }
+
+  return data;
+}
+export async function createFloodReport(report) {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`${API_URL}/flood-reports`, {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+
+    body: JSON.stringify(report),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to create flood report.");
+  }
+
+  return data;
+}
+
+export async function getMyFloodReports() {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch("http://127.0.0.1:8000/api/my-flood-reports", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to get flood reports");
+  }
+
+  return data;
+}
+export async function getAdminDashboard(token) {
+  const response = await fetch("http://127.0.0.1:8000/api/admin/dashboard", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Dashboard request failed: ${response.status}`);
+  }
+
+  return await response.json();
+}
+export async function getAdminReports(token) {
+  const response = await fetch("http://127.0.0.1:8000/api/admin/reports", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Reports request failed: ${response.status}`);
+  }
+
+  return await response.json();
+}

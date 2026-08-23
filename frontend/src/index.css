@@ -1,0 +1,58 @@
+:root {
+  --primary-green: #166534;
+  --main-green: #16a34a;
+  --light-green: #dcfce7;
+  --very-light-green: #f0fdf4;
+  --dark-green: #14532d;
+
+  --white: #ffffff;
+
+  --text-dark: #172033;
+  --text-gray: #64748b;
+
+  --light-gray: #f8fafc;
+  --border-color: #e2e8f0;
+
+  --warning: #f59e0b;
+  --danger: #dc2626;
+
+  font-family: Inter, Arial, Helvetica, sans-serif;
+
+  color: var(--text-dark);
+  background: var(--light-gray);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--light-gray);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
