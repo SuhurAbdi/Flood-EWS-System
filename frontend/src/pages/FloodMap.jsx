@@ -1,48 +1,71 @@
-import PageHeader from "../components/PageHeader";
-import RiskCard from "../components/RiskCard";
+import { useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-import "../index.css";
-import "../App.css";
+import "leaflet/dist/leaflet.css";
 
 function FloodMap() {
+  const [myLocation, setMyLocation] = useState(null);
+  const [error, setError] = useState("");
+
+  const findMyLocation = () => {
+    if (!navigator.geolocation) {
+      setError("Geolocation is not supported.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setMyLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+
+        setError("");
+      },
+      () => {
+        setError("Location permission was denied.");
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0,
+      },
+    );
+  };
+
   return (
-    <div>
-      <PageHeader
-        title="Flood Risk Map"
-        description="Explore flood-risk areas and community reports."
-      />
+    <div className="flood-map">
+      <button onClick={findMyLocation} className="location-button">
+        📍 Find My Location
+      </button>
 
-      <section className="map-section">
-        <div className="map-container">
-          <div className="map-placeholder">
-            <div className="map-center">
-              <div className="map-marker">📍</div>
+      {error && <p className="location-error">{error}</p>}
 
-              <h3>Interactive Flood Map</h3>
+      <MapContainer
+        center={[9.5624, 44.077]}
+        zoom={10}
+        style={{
+          height: "600px",
+          width: "100%",
+        }}
+      >
+        <TileLayer
+          attribution="&copy; OpenStreetMap contributors"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
 
-              <p>GIS flood-risk mapping will appear here.</p>
-            </div>
-          </div>
-
-          <aside className="map-sidebar">
-            <h2>Current Risk</h2>
-
-            <RiskCard
-              level="High"
-              probability="87"
-              location="Manafwa Catchment"
-              description="High risk based on current forecast conditions."
-            />
-
-            <RiskCard
-              level="Mild"
-              probability="42"
-              location="Butaleja"
-              description="Monitor conditions and local alerts."
-            />
-          </aside>
-        </div>
-      </section>
+        {myLocation && (
+          <Marker position={[myLocation.latitude, myLocation.longitude]}>
+            <Popup>
+              📍 <strong>Your Current Location</strong>
+              <br />
+              Latitude: {myLocation.latitude}
+              <br />
+              Longitude: {myLocation.longitude}
+            </Popup>
+          </Marker>
+        )}
+      </MapContainer>
     </div>
   );
 }

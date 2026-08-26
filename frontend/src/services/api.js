@@ -97,25 +97,47 @@ export async function logoutUser(token) {
 
   return data;
 }
-export async function createFloodReport(report) {
+export async function createFloodReport(reportData) {
   const token = localStorage.getItem("token");
 
-  const response = await fetch(`${API_URL}/flood-reports`, {
+  if (!token) {
+    throw new Error("You are not logged in.");
+  }
+
+  const formData = new FormData();
+
+  // Text fields
+  formData.append("location", reportData.location);
+  formData.append("severity", reportData.severity);
+  formData.append("flood_occurred", reportData.flood_occurred ? "1" : "0");
+  formData.append("description", reportData.description || "");
+
+  // Real GPS location
+  formData.append("latitude", reportData.latitude);
+
+  formData.append("longitude", reportData.longitude);
+
+  // Real flood photo
+  if (reportData.photo) {
+    formData.append("photo", reportData.photo);
+  }
+
+  const response = await fetch("http://127.0.0.1:8000/api/flood-reports", {
     method: "POST",
 
     headers: {
-      "Content-Type": "application/json",
       Accept: "application/json",
+
       Authorization: `Bearer ${token}`,
     },
 
-    body: JSON.stringify(report),
+    body: formData,
   });
 
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Failed to create flood report.");
+    throw new Error(data.message || "Failed to submit flood report.");
   }
 
   return data;
@@ -169,4 +191,35 @@ export async function getAdminReports(token) {
   }
 
   return await response.json();
+}
+export async function getAdminUsers(token) {
+  const response = await fetch("http://127.0.0.1:8000/api/admin/users", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Users request failed: ${response.status}`);
+  }
+
+  return await response.json();
+}
+export async function getFloodAlerts() {
+  const response = await fetch("http://127.0.0.1:8000/api/flood-alerts", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to load flood alerts.");
+  }
+
+  return data;
 }

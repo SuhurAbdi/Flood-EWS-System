@@ -18,6 +18,8 @@ use HasFactory;
         'description',
         'photo',
         'status',
+        'latitude',
+        'longitude',
     ];
 
     protected $casts = [

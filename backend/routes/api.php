@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\FloodReportController;
 use App\Http\Controllers\Api\AuthController;
-
+use App\Http\Controllers\Api\FloodAlertController;
 use App\Http\Controllers\Api\AdminDashboardController;
 
 Route::get('/user', function (Request $request) {
@@ -88,4 +88,17 @@ Route::middleware('auth:sanctum')->get(
 Route::middleware('auth:sanctum')->get(
     '/admin/reports',
     [AdminDashboardController::class, 'reports']
+);
+
+Route::middleware('auth:sanctum')->get(
+    '/admin/users',
+    [AdminDashboardController::class, 'users']
+);
+Route::middleware('auth:sanctum')->post(
+    '/flood-reports',
+    [FloodReportController::class, 'store']
+);
+Route::get(
+    '/flood-alerts',
+    [FloodAlertController::class, 'index']
 );

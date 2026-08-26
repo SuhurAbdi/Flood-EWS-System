@@ -43,9 +43,23 @@ class FloodReportController extends Controller
 
             'description' => 'nullable|string',
 
-            'photo' => 'nullable|string|max:255',
+          'photo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
+         // Store uploaded photo
+        $photoPath = null;
 
+        if ($request->hasFile('photo')) {
+            $photoPath = $request
+                ->file('photo')
+                ->store('flood-reports', 'public');
+        }
+$request->validate([
+    'location' => 'required',
+    'description' => 'required',
+
+    'latitude' => 'required|numeric|between:-90,90',
+    'longitude' => 'required|numeric|between:-180,180',
+]);
         /*
         |--------------------------------------------------------------------------
         | Automatically get the authenticated user
@@ -70,7 +84,17 @@ class FloodReportController extends Controller
     $validated['user_id'] = $user->id;
 
     $floodReport = FloodReport::create($validated);
-
+    $floodReport = FloodReport::create([
+    'user_id' => auth()->id(),
+    'location' => $request->location,
+    'severity' => $request->severity,
+    'flood_occurred' => $request->flood_occurred,
+    'description' => $request->description,
+    'latitude' => $request->latitude,
+    'longitude' => $request->longitude,
+    'photo' => $photoPath,
+    'status' => 'pending',
+]);
     return response()->json([
         'success' => true,
         'message' => 'Flood report created successfully.',
