@@ -102,3 +102,10 @@ Route::get(
     '/flood-alerts',
     [FloodAlertController::class, 'index']
 );
+/**
+     * Show API Delete.
+     */
+    Route::middleware('auth:sanctum')->delete(
+    '/admin/flood-reports/{id}',
+    [AdminDashboardController::class, 'destroyReport']
+);

@@ -118,5 +118,19 @@ $request->validate([
             'success' => true,
             'data' => $floodReport
         ]);
+        return response()->json([
+    'total_reports' => $totalReports,
+]);
     }
+   
+    public function destroyReport($id)
+{
+    $report = FloodReport::findOrFail($id);
+
+    $report->delete();
+
+    return response()->json([
+        'message' => 'Flood report deleted successfully.',
+    ]);
+}
 }
