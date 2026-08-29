@@ -46,6 +46,10 @@ export async function loginUser(credentials) {
   if (!response.ok) {
     throw new Error(data.message || "Login failed.");
   }
+  // SAVE SANCTUM TOKEN
+  if (data.token) {
+    localStorage.setItem("token", data.token);
+  }
 
   return data;
 }
@@ -97,6 +101,25 @@ export async function logoutUser(token) {
 
   return data;
 }
+
+/*
+|--------------------------------------------------------------------------
+| Create Flood Report
+|--------------------------------------------------------------------------
+|
+| Sends:
+| - location
+| - severity
+| - flood_occurred
+| - description
+| - latitude
+| - longitude
+| - photo
+|
+| Uses FormData because we are uploading an image.
+|--------------------------------------------------------------------------
+*/
+
 export async function createFloodReport(reportData) {
   const token = localStorage.getItem("token");
 
@@ -109,45 +132,113 @@ export async function createFloodReport(reportData) {
   // Text fields
   formData.append("location", reportData.location);
   formData.append("severity", reportData.severity);
+
+  // Laravel can receive this as 1 or 0
   formData.append("flood_occurred", reportData.flood_occurred ? "1" : "0");
+
   formData.append("description", reportData.description || "");
 
-  // Real GPS location
-  formData.append("latitude", reportData.latitude);
+  // GPS coordinates
+  formData.append("latitude", String(reportData.latitude));
 
-  formData.append("longitude", reportData.longitude);
+  formData.append("longitude", String(reportData.longitude));
 
-  // Real flood photo
+  // Flood photo
   if (reportData.photo) {
-    formData.append("photo", reportData.photo);
+    formData.append("photo", reportData.photo, reportData.photo.name);
   }
 
-  const response = await fetch("http://127.0.0.1:8000/api/flood-reports", {
+  // Debugging
+  console.log("Sending flood report:");
+
+  for (const [key, value] of formData.entries()) {
+    console.log(key, value);
+  }
+
+  const response = await fetch(`${API_URL}/flood-reports`, {
     method: "POST",
 
     headers: {
       Accept: "application/json",
-
       Authorization: `Bearer ${token}`,
     },
 
+    // IMPORTANT:
+    // Do NOT add Content-Type here.
+    // Browser automatically creates:
+    // multipart/form-data; boundary=...
     body: formData,
   });
 
-  const data = await response.json();
+  let data;
+
+  try {
+    data = await response.json();
+  } catch (error) {
+    throw new Error(
+      `Server returned an invalid response. Status: ${response.status}`,
+    );
+  }
 
   if (!response.ok) {
-    throw new Error(data.message || "Failed to submit flood report.");
+    throw new Error(
+      data.message || data.error || "Failed to submit flood report.",
+    );
   }
 
   return data;
 }
+
+/*
+|--------------------------------------------------------------------------
+| Get My Flood Reports
+|--------------------------------------------------------------------------
+*/
 
 export async function getMyFloodReports() {
   const token = localStorage.getItem("token");
 
-  const response = await fetch("http://127.0.0.1:8000/api/my-flood-reports", {
+  if (!token) {
+    throw new Error("You are not logged in.");
+  }
+
+  const response = await fetch(`${API_URL}/flood-reports`, {
     method: "GET",
+
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  let data;
+
+  try {
+    data = await response.json();
+  } catch (error) {
+    throw new Error(
+      `Server returned an invalid response. Status: ${response.status}`,
+    );
+  }
+
+  if (!response.ok) {
+    throw new Error(
+      data.message || data.error || "Failed to load flood reports.",
+    );
+  }
+
+  return data;
+}
+/*
+|--------------------------------------------------------------------------
+| Admin Dashboard
+|--------------------------------------------------------------------------
+*/
+
+export async function getAdminDashboard(token) {
+  const response = await fetch(`${API_URL}/admin/dashboard`, {
+    method: "GET",
+
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
@@ -157,59 +248,76 @@ export async function getMyFloodReports() {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Failed to get flood reports");
+    throw new Error(
+      data.message || `Dashboard request failed: ${response.status}`,
+    );
   }
 
   return data;
 }
-export async function getAdminDashboard(token) {
-  const response = await fetch("http://127.0.0.1:8000/api/admin/dashboard", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
 
-  if (!response.ok) {
-    throw new Error(`Dashboard request failed: ${response.status}`);
-  }
+/*
+|--------------------------------------------------------------------------
+| Admin Reports
+|--------------------------------------------------------------------------
+*/
 
-  return await response.json();
-}
 export async function getAdminReports(token) {
-  const response = await fetch("http://127.0.0.1:8000/api/admin/reports", {
+  const response = await fetch(`${API_URL}/admin/reports`, {
     method: "GET",
+
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error(`Reports request failed: ${response.status}`);
+    throw new Error(
+      data.message || `Reports request failed: ${response.status}`,
+    );
   }
 
-  return await response.json();
+  return data;
 }
+
+/*
+|--------------------------------------------------------------------------
+| Admin Users
+|--------------------------------------------------------------------------
+*/
+
 export async function getAdminUsers(token) {
-  const response = await fetch("http://127.0.0.1:8000/api/admin/users", {
+  const response = await fetch(`${API_URL}/admin/users`, {
     method: "GET",
+
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error(`Users request failed: ${response.status}`);
+    throw new Error(data.message || `Users request failed: ${response.status}`);
   }
 
-  return await response.json();
+  return data;
 }
+
+/*
+|--------------------------------------------------------------------------
+| Flood Alerts
+|--------------------------------------------------------------------------
+*/
+
 export async function getFloodAlerts() {
-  const response = await fetch("http://127.0.0.1:8000/api/flood-alerts", {
+  const response = await fetch(`${API_URL}/flood-alerts`, {
     method: "GET",
+
     headers: {
       Accept: "application/json",
     },

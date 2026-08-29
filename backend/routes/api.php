@@ -2,32 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\FloodReportController;
+
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\FloodReportController;
 use App\Http\Controllers\Api\FloodAlertController;
 use App\Http\Controllers\Api\AdminDashboardController;
-
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
-
-Route::get(
-    '/flood-reports',
-    [FloodReportController::class, 'index']
-);
-
-
-Route::post(
-    '/flood-reports',
-    [FloodReportController::class, 'store']
-);
-
-
-Route::get(
-    '/flood-reports/{floodReport}',
-    [FloodReportController::class, 'show']
-);
 
 /*
 |--------------------------------------------------------------------------
@@ -35,14 +14,29 @@ Route::get(
 |--------------------------------------------------------------------------
 */
 
+// Register
 Route::post(
     '/register',
     [AuthController::class, 'register']
 );
 
+// Login
 Route::post(
     '/login',
     [AuthController::class, 'login']
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
+
+// Flood alerts can be viewed without login
+Route::get(
+    '/flood-alerts',
+    [FloodAlertController::class, 'index']
 );
 
 
@@ -54,6 +48,12 @@ Route::post(
 
 Route::middleware('auth:sanctum')->group(function () {
 
+    /*
+    |--------------------------------------------------------------------------
+    | Authenticated User
+    |--------------------------------------------------------------------------
+    */
+
     Route::get(
         '/user',
         [AuthController::class, 'user']
@@ -64,48 +64,56 @@ Route::middleware('auth:sanctum')->group(function () {
         [AuthController::class, 'logout']
     );
 
-    Route::get('/flood-reports', [FloodReportController::class, 'index']);
 
-    Route::post('/flood-reports', [FloodReportController::class, 'store']);
+    /*
+    |--------------------------------------------------------------------------
+    | Flood Reports
+    |--------------------------------------------------------------------------
+    */
+Route::middleware('auth:sanctum')->group(function () {
+    // Create ONE flood report
+    Route::post(
+        '/flood-reports',
+        [FloodReportController::class, 'store']
+    );
+
+    // Get logged-in user's flood reports
+    Route::get(
+        '/flood-reports',
+        [FloodReportController::class, 'index']
+    );
+
+    // Get one flood report
+    Route::get(
+        '/flood-reports/{floodReport}',
+        [FloodReportController::class, 'show']
+    );
 });
 
-/*
-|--------------------------------------------------------------------------
-| Creating Dashboard Routes
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Dashboard
+    |--------------------------------------------------------------------------
+    */
 
+    Route::get(
+        '/admin/dashboard',
+        [AdminDashboardController::class, 'index']
+    );
 
-Route::middleware('auth:sanctum')->get(
-    '/admin/dashboard',
-    [AdminDashboardController::class, 'index']
-);
-Route::middleware('auth:sanctum')->get(
-    '/admin/dashboard',
-    [AdminDashboardController::class, 'index']
-);
+    Route::get(
+        '/admin/reports',
+        [AdminDashboardController::class, 'reports']
+    );
 
-Route::middleware('auth:sanctum')->get(
-    '/admin/reports',
-    [AdminDashboardController::class, 'reports']
-);
+    Route::get(
+        '/admin/users',
+        [AdminDashboardController::class, 'users']
+    );
 
-Route::middleware('auth:sanctum')->get(
-    '/admin/users',
-    [AdminDashboardController::class, 'users']
-);
-Route::middleware('auth:sanctum')->post(
-    '/flood-reports',
-    [FloodReportController::class, 'store']
-);
-Route::get(
-    '/flood-alerts',
-    [FloodAlertController::class, 'index']
-);
-/**
-     * Show API Delete.
-     */
-    Route::middleware('auth:sanctum')->delete(
-    '/admin/flood-reports/{id}',
-    [AdminDashboardController::class, 'destroyReport']
-);
+    // Admin delete flood report
+    Route::delete(
+        '/admin/flood-reports/{id}',
+        [AdminDashboardController::class, 'destroyReport']
+    );
+});

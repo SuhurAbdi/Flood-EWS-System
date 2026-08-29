@@ -18,12 +18,15 @@ use HasFactory;
         'description',
         'photo',
         'status',
+         'risk_level',
         'latitude',
         'longitude',
     ];
 
     protected $casts = [
         'flood_occurred' => 'boolean',
+        'latitude' => 'float',
+        'longitude' => 'float',
     ];
 
     public function user()

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -35,30 +36,42 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
+{
+    // Validate login information
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        $user = User::where('email', $validated['email'])->first();
-
-        if (!$user || !Hash::check($validated['password'], $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The email or password is incorrect.'],
-            ]);
-        }
-
-        $token = $user->createToken('flood-ews-token')->plainTextToken;
-
+    // Check email and password
+    if (!Auth::attempt($credentials)) {
         return response()->json([
-            'success' => true,
-            'message' => 'Login successful.',
-            'user' => $user,
-            'token' => $token,
-        ]);
+            'success' => false,
+            'message' => 'Invalid email or password.',
+        ], 401);
     }
 
+    // Get the authenticated user
+    $user = Auth::user();
+
+    // Safety check
+    if (!$user) {
+        return response()->json([
+            'success' => false,
+            'message' => 'User authentication failed.',
+        ], 401);
+    }
+
+    // Create Sanctum token
+    $token = $user->createToken('flood-ews-token')->plainTextToken;
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Login successful.',
+        'user' => $user,
+        'token' => $token,
+    ], 200);
+}
     public function user(Request $request)
     {
         return response()->json([

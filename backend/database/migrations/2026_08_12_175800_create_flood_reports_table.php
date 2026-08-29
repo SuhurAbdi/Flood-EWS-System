@@ -37,6 +37,17 @@ return new class extends Migration
             $table->string('status')
                   ->default('pending');
 
+            // XGBoost predicted flood risk
+            $table->string('risk_level')
+                  ->nullable();
+
+            // GPS coordinates
+            $table->decimal('latitude', 10, 7)
+                  ->nullable();
+
+            $table->decimal('longitude', 10, 7)
+                  ->nullable();
+
             $table->timestamps();
         });
     }
