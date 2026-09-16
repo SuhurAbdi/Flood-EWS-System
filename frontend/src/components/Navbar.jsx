@@ -9,7 +9,7 @@ function Navbar() {
           <span className="logo-icon">🌊</span>
 
           <span>
-            Flood<span className="logo-green">EWS</span>
+            Green<span className="logo-green">Shield</span>
           </span>
         </Link>
 

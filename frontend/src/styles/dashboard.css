@@ -1,0 +1,501 @@
+/* ========================================================= FLOODEWS USER DASHBOARD Unique CSS - user-dashboard- ========================================================= */
+.user-dashboard-page {
+  min-height: 100vh;
+  padding: 28px 32px;
+  background: #f8fafc;
+  color: #000;
+  box-sizing: border-box;
+} /* ========================================================= HEADER ========================================================= */
+.user-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+.user-dashboard-header-content {
+  width: 100%;
+}
+.user-dashboard-label {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: #16a34a;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+.user-dashboard-header h1 {
+  margin: 0 0 7px;
+  color: #000;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.user-dashboard-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+} /* ========================================================= ERROR ========================================================= */
+.user-dashboard-error {
+  margin-bottom: 20px;
+  padding: 12px 15px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-left: 4px solid #dc2626;
+  border-radius: 7px;
+  color: #991b1b;
+  font-size: 11px;
+  font-weight: 700;
+} /* ========================================================= STATISTICS ========================================================= */
+.user-dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 13px;
+  margin-bottom: 23px;
+}
+.user-dashboard-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 82px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.user-dashboard-stat-card:hover {
+  border-color: #86efac;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+.user-dashboard-stat-icon {
+  width: 43px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 9px;
+  font-size: 20px;
+}
+.user-dashboard-stat-content {
+  min-width: 0;
+}
+.user-dashboard-stat-title {
+  margin: 0 0 3px;
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.user-dashboard-stat-content h2 {
+  margin: 0 0 3px;
+  color: #000;
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1;
+}
+.user-dashboard-stat-content span {
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 700;
+} /* ========================================================= SECTIONS ========================================================= */
+.user-dashboard-section {
+  margin-bottom: 22px;
+  scroll-margin-top: 20px;
+} /* ========================================================= MAIN CARD ========================================================= */
+.user-dashboard-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+  overflow: hidden;
+} /* ========================================================= CARD HEADER ========================================================= */
+.user-dashboard-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 17px 19px;
+  border-bottom: 1px solid #f1f5f9;
+}
+.user-dashboard-card-header h2 {
+  margin: 0 0 4px;
+  color: #000;
+  font-size: 17px;
+  font-weight: 700;
+}
+.user-dashboard-card-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.5;
+} /* ========================================================= QUICK ACTIONS ========================================================= */
+.user-dashboard-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 17px 19px;
+}
+.user-dashboard-action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 68px;
+  padding: 11px 32px 11px 11px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #000;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.user-dashboard-action:hover {
+  background: #f0fdf4;
+  border-color: #86efac;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);
+  transform: translateY(-2px);
+}
+.user-dashboard-action-icon {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #dcfce7;
+  border-radius: 7px;
+  font-size: 16px;
+}
+.user-dashboard-action-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.user-dashboard-action-content strong {
+  margin-bottom: 3px;
+  color: #000;
+  font-size: 10px;
+  font-weight: 700;
+}
+.user-dashboard-action-content small {
+  color: #64748b;
+  font-size: 9px;
+  line-height: 1.35;
+}
+.user-dashboard-action-arrow {
+  position: absolute;
+  right: 10px;
+  color: #16a34a;
+  font-size: 15px;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+.user-dashboard-action:hover .user-dashboard-action-arrow {
+  transform: translateX(3px);
+  color: #14532d;
+} /* ========================================================= REPORT COUNT ========================================================= */
+.user-dashboard-report-count {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 20px;
+  color: #166534;
+  font-size: 9px;
+  font-weight: 700;
+} /* ========================================================= REPORT LIST ========================================================= */
+.user-dashboard-report-list {
+  width: 100%;
+}
+.user-dashboard-report-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 15px 19px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.2s ease;
+}
+.user-dashboard-report-item:last-child {
+  border-bottom: none;
+}
+.user-dashboard-report-item:hover {
+  background: #fafffb;
+}
+.user-dashboard-report-info {
+  flex: 1;
+  min-width: 0;
+}
+.user-dashboard-report-location {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.user-dashboard-location-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #f0fdf4;
+  border: 1px solid #dcfce7;
+  border-radius: 7px;
+  font-size: 13px;
+}
+.user-dashboard-report-location h3 {
+  margin: 0 0 4px;
+  color: #000;
+  font-size: 13px;
+  font-weight: 700;
+}
+.user-dashboard-report-location p {
+  max-width: 700px;
+  margin: 0;
+  color: #64748b;
+  font-size: 10px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.user-dashboard-report-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 8px;
+  padding-left: 40px;
+}
+.user-dashboard-report-details small {
+  color: #64748b;
+  font-size: 9px;
+}
+.user-dashboard-report-details strong {
+  color: #475569;
+  font-weight: 800;
+} /* ========================================================= STATUS ========================================================= */
+.user-dashboard-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-width: 68px;
+  padding: 6px 9px;
+  border-radius: 15px;
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.user-dashboard-status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+.user-dashboard-status-verified {
+  background: #dcfce7;
+  color: #166534;
+}
+.user-dashboard-status-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+} /* ========================================================= EMPTY STATE ========================================================= */
+.user-dashboard-empty {
+  padding: 42px 25px;
+  text-align: center;
+}
+.user-dashboard-empty-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  font-size: 25px;
+}
+.user-dashboard-empty h3 {
+  margin: 0 0 6px;
+  color: #000;
+  font-size: 15px;
+  font-weight: 800;
+}
+.user-dashboard-empty p {
+  max-width: 480px;
+  margin: 0 auto 17px;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.6;
+} /* ========================================================= PRIMARY BUTTON ========================================================= */
+.user-dashboard-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border: none;
+  border-radius: 7px;
+  background: #16a34a;
+  color: #fff;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.user-dashboard-primary-button:hover {
+  background: #14532d;
+  box-shadow: 0 4px 10px rgba(20, 83, 45, 0.18);
+  transform: translateY(-1px);
+} /* ========================================================= LOADING ========================================================= */
+.user-dashboard-loading {
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 11px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+.user-dashboard-spinner {
+  width: 31px;
+  height: 31px;
+  border: 3px solid #dcfce7;
+  border-top-color: #16a34a;
+  border-radius: 50%;
+  animation: user-dashboard-spin 0.8s linear infinite;
+}
+@keyframes user-dashboard-spin {
+  to {
+    transform: rotate(360deg);
+  }
+} /* ========================================================= SCROLLBAR ========================================================= */
+.user-dashboard-page::-webkit-scrollbar {
+  width: 7px;
+}
+.user-dashboard-page::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.user-dashboard-page::-webkit-scrollbar-thumb {
+  background: #bbf7d0;
+  border-radius: 8px;
+}
+.user-dashboard-page::-webkit-scrollbar-thumb:hover {
+  background: #16a34a;
+} /* ========================================================= TABLET ========================================================= */
+@media (max-width: 1100px) {
+  .user-dashboard-page {
+    padding: 24px;
+  }
+  .user-dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .user-dashboard-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+} /* ========================================================= MOBILE ========================================================= */
+@media (max-width: 700px) {
+  .user-dashboard-page {
+    padding: 18px 15px;
+  }
+  .user-dashboard-header {
+    margin-bottom: 20px;
+  }
+  .user-dashboard-header h1 {
+    font-size: 23px;
+  }
+  .user-dashboard-header p {
+    font-size: 11px;
+  }
+  .user-dashboard-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+  }
+  .user-dashboard-stat-card {
+    min-height: 70px;
+    padding: 10px;
+    gap: 9px;
+  }
+  .user-dashboard-stat-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+  .user-dashboard-stat-content h2 {
+    font-size: 19px;
+  }
+  .user-dashboard-stat-title {
+    font-size: 8px;
+  }
+  .user-dashboard-stat-content span {
+    font-size: 8px;
+  }
+  .user-dashboard-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px;
+  }
+  .user-dashboard-actions {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+  .user-dashboard-action {
+    min-height: 58px;
+  }
+  .user-dashboard-report-item {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px;
+  }
+  .user-dashboard-status {
+    align-self: flex-start;
+  }
+  .user-dashboard-report-details {
+    padding-left: 40px;
+  }
+} /* ========================================================= SMALL PHONES ========================================================= */
+@media (max-width: 430px) {
+  .user-dashboard-page {
+    padding: 15px 12px;
+  }
+  .user-dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+  .user-dashboard-header h1 {
+    font-size: 21px;
+  }
+  .user-dashboard-header p {
+    font-size: 10px;
+  }
+  .user-dashboard-card-header h2 {
+    font-size: 15px;
+  }
+  .user-dashboard-report-location h3 {
+    font-size: 12px;
+  }
+  .user-dashboard-report-location p {
+    font-size: 9px;
+  }
+  .user-dashboard-empty {
+    padding: 30px 17px;
+  }
+}

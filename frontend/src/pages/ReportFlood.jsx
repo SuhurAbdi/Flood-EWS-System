@@ -406,7 +406,7 @@ function ReportFlood() {
   return (
     <div>
       <PageHeader
-        title="Report a Flood"
+        title="Report  Flood"
         description="Report flooding in your area and help improve community flood warnings."
       />
 

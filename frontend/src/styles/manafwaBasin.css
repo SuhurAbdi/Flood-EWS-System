@@ -1,0 +1,983 @@
+/* =========================================================
+   MANAFWA BASIN PAGE
+   FloodEWS - Localized Study Area
+========================================================= */
+
+.manafwa-basin-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  color: #111827;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   COMMON LABELS
+========================================================= */
+
+.manafwa-basin-label,
+.manafwa-basin-small-label {
+  display: inline-block;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.manafwa-basin-label {
+  color: #16a34a;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.manafwa-basin-small-label {
+  color: #16a34a;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.manafwa-basin-hero {
+  min-height: 520px;
+  padding: 80px 7%;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 55%, #dcfce7 100%);
+
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.manafwa-basin-hero-content {
+  max-width: 720px;
+}
+
+.manafwa-basin-hero h1 {
+  margin: 0 0 20px;
+  color: #14532d;
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1.05;
+  font-weight: 900;
+}
+
+.manafwa-basin-hero p {
+  max-width: 680px;
+  margin: 0;
+  color: #374151;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.manafwa-basin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.manafwa-basin-primary-button,
+.manafwa-basin-secondary-button {
+  border: none;
+  padding: 13px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.manafwa-basin-primary-button {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.manafwa-basin-primary-button:hover {
+  background: #14532d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(22, 163, 74, 0.22);
+}
+
+.manafwa-basin-secondary-button {
+  background: #ffffff;
+  color: #14532d;
+  border: 2px solid #16a34a;
+}
+
+.manafwa-basin-secondary-button:hover {
+  background: #dcfce7;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.manafwa-basin-hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.manafwa-basin-river-card {
+  width: 300px;
+  min-height: 310px;
+  padding: 35px;
+  border-radius: 24px;
+
+  background: linear-gradient(145deg, #14532d, #16a34a);
+
+  color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  box-shadow: 0 20px 45px rgba(20, 83, 45, 0.25);
+
+  transition: transform 0.25s ease;
+}
+
+.manafwa-basin-river-card:hover {
+  transform: translateY(-6px);
+}
+
+.manafwa-basin-river-icon {
+  font-size: 65px;
+  margin-bottom: 20px;
+}
+
+.manafwa-basin-river-card strong {
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+.manafwa-basin-river-card > span:last-child {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* =========================================================
+   MAP SECTION
+========================================================= */
+
+.manafwa-basin-map-section {
+  padding: 75px 6%;
+  background: #f8faf9;
+}
+
+.manafwa-basin-map-heading {
+  max-width: 850px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.manafwa-basin-map-heading h2 {
+  margin: 5px 0 14px;
+  color: #14532d;
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.manafwa-basin-map-heading p {
+  max-width: 720px;
+  margin: auto;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   MAP CONTAINER
+========================================================= */
+
+.manafwa-basin-map-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  height: 520px;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  border: 3px solid #16a34a;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+.manafwa-basin-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================================================
+   MAP INFORMATION CARDS
+========================================================= */
+
+.manafwa-basin-map-info {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 20px auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.manafwa-basin-map-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  padding: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #16a34a;
+
+  border-radius: 10px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.manafwa-basin-map-info-card > span {
+  flex-shrink: 0;
+  font-size: 26px;
+}
+
+.manafwa-basin-map-info-card strong {
+  display: block;
+  color: #14532d;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.manafwa-basin-map-info-card p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   MAP POPUP
+========================================================= */
+
+.manafwa-basin-popup {
+  min-width: 180px;
+  text-align: center;
+}
+
+.manafwa-basin-popup strong {
+  color: #14532d;
+  font-size: 16px;
+}
+
+.manafwa-basin-popup p {
+  margin: 8px 0 12px;
+  color: #4b5563;
+  font-size: 13px;
+}
+
+.manafwa-basin-popup button {
+  border: none;
+  padding: 8px 14px;
+
+  background: #16a34a;
+  color: #ffffff;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.manafwa-basin-popup button:hover {
+  background: #14532d;
+}
+
+/* =========================================================
+   GENERAL CONTENT SECTION
+========================================================= */
+
+.manafwa-basin-section {
+  padding: 80px 7%;
+  background: #ffffff;
+}
+
+.manafwa-basin-section-heading {
+  max-width: 850px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.manafwa-basin-section-heading h2 {
+  margin: 5px 0 15px;
+  color: #14532d;
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.manafwa-basin-section-heading p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   INFORMATION CARDS
+========================================================= */
+
+.manafwa-basin-info-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.manafwa-basin-info-card {
+  padding: 30px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.manafwa-basin-info-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #16a34a;
+
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+.manafwa-basin-info-icon {
+  width: 52px;
+  height: 52px;
+
+  margin-bottom: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #dcfce7;
+  color: #14532d;
+
+  border-radius: 10px;
+
+  font-size: 25px;
+}
+
+.manafwa-basin-info-card h3 {
+  margin: 0 0 10px;
+
+  color: #111827;
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.manafwa-basin-info-card p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   WHY MANAFWA SECTION
+========================================================= */
+
+.manafwa-basin-focus {
+  padding: 80px 7%;
+
+  background: linear-gradient(135deg, #14532d, #166534);
+
+  color: #ffffff;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.manafwa-basin-focus .manafwa-basin-small-label {
+  color: #bbf7d0;
+}
+
+.manafwa-basin-focus-content h2 {
+  margin: 5px 0 20px;
+
+  color: #ffffff;
+
+  font-size: 38px;
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.manafwa-basin-focus-content p {
+  margin: 0 0 18px;
+
+  color: #dcfce7;
+
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   FOCUS POINTS
+========================================================= */
+
+.manafwa-basin-focus-points {
+  display: grid;
+  gap: 14px;
+}
+
+.manafwa-basin-focus-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+
+  padding: 18px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 10px;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.manafwa-basin-focus-item:hover {
+  background: rgba(255, 255, 255, 0.13);
+  transform: translateX(4px);
+}
+
+.manafwa-basin-focus-item > span {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #16a34a;
+
+  color: #ffffff;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.manafwa-basin-focus-item strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-size: 16px;
+
+  margin-bottom: 5px;
+}
+
+.manafwa-basin-focus-item p {
+  margin: 0;
+
+  color: #d1fae5;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   FLOODEWS PROCESS
+========================================================= */
+
+.manafwa-basin-process {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns:
+    1fr
+    50px
+    1fr
+    50px
+    1fr
+    50px
+    1fr;
+
+  align-items: center;
+}
+
+.manafwa-basin-process-step {
+  min-height: 210px;
+
+  padding: 25px;
+
+  background: #f8faf9;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  text-align: center;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.manafwa-basin-process-step:hover {
+  transform: translateY(-5px);
+
+  border-color: #16a34a;
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.manafwa-basin-process-step > span {
+  width: 45px;
+  height: 45px;
+
+  margin: 0 auto 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #16a34a;
+
+  color: #ffffff;
+
+  border-radius: 50%;
+
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.manafwa-basin-process-step h3 {
+  margin: 0 0 10px;
+
+  color: #14532d;
+
+  font-size: 20px;
+}
+
+.manafwa-basin-process-step p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.manafwa-basin-process-line {
+  height: 3px;
+
+  background: #16a34a;
+
+  position: relative;
+}
+
+.manafwa-basin-process-line::after {
+  content: "";
+
+  position: absolute;
+
+  right: -1px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  border-left: 7px solid #16a34a;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+/* =========================================================
+   CALL TO ACTION
+========================================================= */
+
+.manafwa-basin-cta {
+  padding: 55px 7%;
+
+  background: #f0fdf4;
+
+  border-top: 1px solid #dcfce7;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 35px;
+}
+
+.manafwa-basin-cta h2 {
+  margin: 5px 0 10px;
+
+  color: #14532d;
+
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.manafwa-basin-cta p {
+  margin: 0;
+
+  color: #4b5563;
+
+  line-height: 1.6;
+}
+
+.manafwa-basin-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+  .manafwa-basin-hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 65px 6%;
+  }
+
+  .manafwa-basin-hero-content {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .manafwa-basin-hero p {
+    margin: auto;
+  }
+
+  .manafwa-basin-actions {
+    justify-content: center;
+  }
+
+  .manafwa-basin-focus {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .manafwa-basin-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .manafwa-basin-map-info {
+    grid-template-columns: 1fr;
+  }
+
+  .manafwa-basin-process {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .manafwa-basin-process-line {
+    display: none;
+  }
+
+  .manafwa-basin-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+  .manafwa-basin-hero {
+    min-height: auto;
+    padding: 50px 5%;
+  }
+
+  .manafwa-basin-hero h1 {
+    font-size: 40px;
+  }
+
+  .manafwa-basin-hero p {
+    font-size: 15px;
+  }
+
+  .manafwa-basin-actions {
+    flex-direction: column;
+  }
+
+  .manafwa-basin-primary-button,
+  .manafwa-basin-secondary-button {
+    width: 100%;
+  }
+
+  .manafwa-basin-river-card {
+    width: 100%;
+    max-width: 300px;
+    min-height: 260px;
+  }
+
+  /* MAP */
+
+  .manafwa-basin-map-section {
+    padding: 55px 5%;
+  }
+
+  .manafwa-basin-map-heading h2 {
+    font-size: 28px;
+  }
+
+  .manafwa-basin-map-heading p {
+    font-size: 14px;
+  }
+
+  .manafwa-basin-map-wrapper {
+    height: 400px;
+    border-width: 2px;
+  }
+
+  /* SECTIONS */
+
+  .manafwa-basin-section {
+    padding: 60px 5%;
+  }
+
+  .manafwa-basin-section-heading h2 {
+    font-size: 28px;
+  }
+
+  .manafwa-basin-section-heading p {
+    font-size: 14px;
+  }
+
+  /* INFO CARDS */
+
+  .manafwa-basin-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .manafwa-basin-info-card {
+    padding: 24px;
+  }
+
+  /* FOCUS */
+
+  .manafwa-basin-focus {
+    padding: 60px 5%;
+  }
+
+  .manafwa-basin-focus-content h2 {
+    font-size: 29px;
+  }
+
+  /* PROCESS */
+
+  .manafwa-basin-process {
+    grid-template-columns: 1fr;
+  }
+
+  .manafwa-basin-process-step {
+    min-height: auto;
+  }
+
+  /* CTA */
+
+  .manafwa-basin-cta {
+    padding: 45px 5%;
+  }
+
+  .manafwa-basin-cta h2 {
+    font-size: 26px;
+  }
+
+  .manafwa-basin-cta-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .manafwa-basin-cta-actions button {
+    width: 100%;
+  }
+}
+/* ================================
+   MANAFWA VISUALS
+================================ */
+
+.manafwa-basin-visuals {
+  padding: 80px 7%;
+  background: #f8faf9;
+}
+
+.manafwa-basin-visuals-heading {
+  max-width: 750px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.manafwa-basin-visuals-heading span {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.manafwa-basin-visuals-heading h2 {
+  margin: 0 0 15px;
+  color: #14532d;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.manafwa-basin-visuals-heading p {
+  margin: 0;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* IMAGE GRID */
+
+.manafwa-basin-image-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+/* IMAGE CARD */
+
+.manafwa-basin-image-card {
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 35px rgba(20, 83, 45, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.manafwa-basin-image-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(20, 83, 45, 0.15);
+}
+
+/* IMAGE */
+
+.manafwa-basin-image-card img {
+  width: 100%;
+  height: 320px;
+  display: block;
+  object-fit: cover;
+}
+
+/* CAPTION */
+
+.manafwa-basin-image-caption {
+  display: flex;
+  gap: 18px;
+  padding: 24px;
+  align-items: flex-start;
+}
+
+.manafwa-basin-image-caption > span {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #14532d;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.manafwa-basin-image-caption h3 {
+  margin: 0 0 7px;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.manafwa-basin-image-caption p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .manafwa-basin-visuals {
+    padding: 55px 20px;
+  }
+
+  .manafwa-basin-visuals-heading h2 {
+    font-size: 28px;
+  }
+
+  .manafwa-basin-image-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .manafwa-basin-image-card img {
+    height: 250px;
+  }
+
+  .manafwa-basin-image-caption {
+    padding: 20px;
+  }
+}

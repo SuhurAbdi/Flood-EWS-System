@@ -7,7 +7,7 @@ function Footer() {
         {/* About */}
         <div className="footer-column">
           <h2>
-            🌊 Flood<span> EWS</span>
+            🌊 Green<span> Shield</span>
           </h2>
 
           <p>
@@ -49,7 +49,7 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>© 2026 FloodEWS. Community Flood Early Warning System.</p>
+        <p>© 2026 GreenShield. Community green shield System.</p>
       </div>
     </footer>
   );

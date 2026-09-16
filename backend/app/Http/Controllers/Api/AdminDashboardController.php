@@ -88,4 +88,27 @@ class AdminDashboardController extends Controller
             'reports' => $reports,
         ]);
     }
+    public function dashboard()
+    {
+        return response()->json([
+            'total_users' => User::count(),
+
+            'total_reports' => FloodReport::count(),
+
+            'pending_reports' => FloodReport::where(
+                'status',
+                'pending'
+            )->count(),
+
+            'verified_reports' => FloodReport::where(
+                'status',
+                'verified'
+            )->count(),
+
+            'rejected_reports' => FloodReport::where(
+                'status',
+                'rejected'
+            )->count(),
+        ]);
+    }
 }

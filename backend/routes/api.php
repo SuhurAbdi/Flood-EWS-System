@@ -15,16 +15,10 @@ use App\Http\Controllers\Api\AdminDashboardController;
 */
 
 // Register
-Route::post(
-    '/register',
-    [AuthController::class, 'register']
-);
+Route::post('/register', [AuthController::class, 'register']);
 
 // Login
-Route::post(
-    '/login',
-    [AuthController::class, 'login']
-);
+Route::post('/login', [AuthController::class, 'login']);
 
 
 /*
@@ -34,10 +28,7 @@ Route::post(
 */
 
 // Flood alerts can be viewed without login
-Route::get(
-    '/flood-alerts',
-    [FloodAlertController::class, 'index']
-);
+Route::get('/flood-alerts', [FloodAlertController::class, 'index']);
 
 
 /*
@@ -54,15 +45,9 @@ Route::middleware('auth:sanctum')->group(function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get(
-        '/user',
-        [AuthController::class, 'user']
-    );
+    Route::get('/user', [AuthController::class, 'user']);
 
-    Route::post(
-        '/logout',
-        [AuthController::class, 'logout']
-    );
+    Route::post('/logout', [AuthController::class, 'logout']);
 
 
     /*
@@ -70,25 +55,16 @@ Route::middleware('auth:sanctum')->group(function () {
     | Flood Reports
     |--------------------------------------------------------------------------
     */
-Route::middleware('auth:sanctum')->group(function () {
-    // Create ONE flood report
-    Route::post(
-        '/flood-reports',
-        [FloodReportController::class, 'store']
-    );
+
+    // Create one flood report
+    Route::post('/flood-reports', [FloodReportController::class, 'store']);
 
     // Get logged-in user's flood reports
-    Route::get(
-        '/flood-reports',
-        [FloodReportController::class, 'index']
-    );
+    Route::get('/flood-reports', [FloodReportController::class, 'index']);
 
     // Get one flood report
-    Route::get(
-        '/flood-reports/{floodReport}',
-        [FloodReportController::class, 'show']
-    );
-});
+    Route::get('/flood-reports/{floodReport}', [FloodReportController::class, 'show']);
+
 
     /*
     |--------------------------------------------------------------------------
@@ -116,4 +92,5 @@ Route::middleware('auth:sanctum')->group(function () {
         '/admin/flood-reports/{id}',
         [AdminDashboardController::class, 'destroyReport']
     );
+    Route::get('/flood-risk', [FloodAlertController::class, 'currentRisk']);
 });

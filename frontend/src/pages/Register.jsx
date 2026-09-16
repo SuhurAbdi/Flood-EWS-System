@@ -48,7 +48,7 @@ function Register() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-logo">
-          🌊 Flood<span>EWS</span>
+          🌊 Green <span>Shield</span>
         </div>
 
         <h1>Create Your Account</h1>

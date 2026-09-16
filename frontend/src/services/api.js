@@ -331,3 +331,17 @@ export async function getFloodAlerts() {
 
   return data;
 }
+/*
+|--------------------------------------------------------------------------
+| Alert Robot
+|--------------------------------------------------------------------------
+*/
+export async function getFloodRisk() {
+  const response = await fetch(`${API_URL}/flood-risk`);
+
+  if (!response.ok) {
+    throw new Error("Unable to load flood risk");
+  }
+
+  return response.json();
+}

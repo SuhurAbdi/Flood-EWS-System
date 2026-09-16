@@ -50,4 +50,12 @@ class FloodAlertController extends Controller
             'alerts' => $alerts,
         ]);
     }
+    public function currentRisk()
+{
+    return response()->json([
+        'area' => 'Manafwa Catchment',
+        'risk_level' => 'Extreme',
+        'message' => 'High flood risk detected'
+    ]);
+}
 }
